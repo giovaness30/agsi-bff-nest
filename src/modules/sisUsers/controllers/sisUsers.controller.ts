@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Put } from "@nestjs/common";
-import { ApiHeader, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { catchError } from "rxjs";
 import { errorResponseHelper } from "src/shared/helpers/error.response.helper";
 import { SisUserService } from "../services/sisUsers.service";
@@ -27,6 +27,7 @@ export class SisUserController {
   }
 
   @Put('/permissions')
+  @ApiOperation({ summary: 'Altera as Permissões de Usuários', description: 'Altera as Permissões de Usuários' })
   async updateSisUsersPermissions(@Body() items: PermissionsModel) {
     return await this.sisUserService.putSisUserPermissions(items)
   }
